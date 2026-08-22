@@ -1,5 +1,5 @@
 /* ============================================================
-   A Word For You — app.js
+   JG — Jesus Guidance— app.js
    Vanilla JS, hash-based router, no build step, no framework.
    Depends on data/scripture-data.js being loaded first.
 ============================================================ */
