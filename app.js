@@ -189,7 +189,7 @@
       back
         ? el("button", { class: "back-btn", "aria-label": "Back", onclick: () => history.back() }, ["←"])
         : el("span", { style: "width:52px" }, []),
-      el("div", { class: "brand" }, [title || "🕊️ A Word For You"]),
+      el("div", { class: "brand" }, [title || "JG — Jesus Guidance"]),
       action || el("span", { style: "width:44px" }, [])
     ]);
     return bar;
