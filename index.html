@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>A Word For You — Scripture for how you feel</title>
+<meta name="description" content="Find a Bible passage for how you feel, what you need, or who you want to become. Free, private, and works offline." />
+
+<!-- PWA -->
+<link rel="manifest" href="manifest.json" />
+<meta name="theme-color" content="#223255" />
+<link rel="apple-touch-icon" href="icons/icon-192.png" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="apple-mobile-web-app-title" content="A Word For You" />
+<link rel="icon" href="icons/icon.svg" type="image/svg+xml" />
+
+<!-- Fonts (cached by the service worker; falls back to system fonts if offline on first visit) -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<a class="skip-link" href="#app">Skip to content</a>
+
+<div id="app" role="main"></div>
+
+<!-- Data first, then app logic -->
+<script src="data/scripture-data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
