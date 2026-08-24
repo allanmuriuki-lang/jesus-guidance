@@ -1,8 +1,8 @@
 {
-  "name": "A Word For You — Scripture for how you feel",
-  "short_name": "A Word For You",
-  "description": "Find a Bible passage for how you feel, what you need, or who you want to become.",
-  "start_url": "./index.html",
+  "name": "JG — Jesus Guidance",
+  "short_name": "JG",
+  "description": "Find Scripture for what you are feeling, facing, or seeking.",
+  "start_url": "./",
   "scope": "./",
   "display": "standalone",
   "orientation": "portrait",
@@ -20,12 +20,6 @@
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any"
-    },
-    {
-      "src": "icons/icon-maskable-512.png",
-      "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "maskable"
     }
   ]
 }

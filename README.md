@@ -1,4 +1,4 @@
-# A Word For You
+# JG — Jesus Guidance
 
 A free, mobile-first Progressive Web App that helps people find a Bible
 passage for how they feel, what they need, or the character they want to
@@ -17,7 +17,7 @@ Scripture text: **World English Bible (WEB)** — public domain.
 | `data/scripture-data.js` | All categories and Scripture text, as structured JS data |
 | `manifest.json` | PWA metadata (name, icons, colors) so it's installable |
 | `service-worker.js` | Caches the app so it works offline after first load |
-| `icons/` | App icon (SVG + PNG in 192/512/maskable sizes) |
+| `icons/` |App icons (PNG in 192px and 512px sizes)
 
 ## Run it locally
 
@@ -26,7 +26,7 @@ You can't just double-click `index.html` in some browsers because the
 The simplest fix is a tiny local server:
 
 ```bash
-cd bible-app
+cd jesus-guidance
 python3 -m http.server 8000
 ```
 
@@ -64,9 +64,9 @@ sharing work: a link to `#peace` opens the app already on the Peace screen.
    need to sit at the repo root, or in `/docs` if you prefer).
 3. In the repo: **Settings → Pages → Source**, choose the branch (e.g.
    `main`) and folder (`/root` or `/docs`), then **Save**.
-4. GitHub gives you a URL like `https://yourusername.github.io/your-repo/`.
+4. GitHub gives you a URL like `https://allanmuriuki-lang.github.io/jesus-guidance/
    The app works fine from a sub-path — all links are relative.
-5. Share `https://yourusername.github.io/your-repo/#peace` (etc.) on
+5. Share `https://allanmuriuki-lang.github.io/jesus-guidance/` (etc.) on
    WhatsApp to test the deep-link flow end to end.
 
 ## Expanding the Scripture index

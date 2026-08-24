@@ -1,15 +1,11 @@
 /* ============================================================
-   service-worker.js
-   Caches the app shell so "A Word For You" keeps working offline
-   after the first visit. No backend, no external dependencies
-   required to function (Google Fonts are cached best-effort).
-============================================================ */
+   JG — Jesus Guidance
+   Service Worker
+   Provides offline access after the first successful visit.
+   ============================================================ */
 
-const CACHE_NAME = "awfy-cache-v1";
+const CACHE_NAME = "jg-cache-v2";
 
-// Paths are relative to this file's location, so this works
-// whether the app is hosted at the domain root or in a
-// GitHub Pages sub-path like /my-repo/.
 const CORE_ASSETS = [
   "./",
   "./index.html",
@@ -17,49 +13,68 @@ const CORE_ASSETS = [
   "./app.js",
   "./data/scripture-data.js",
   "./manifest.json",
-  "./icons/icon.svg",
   "./icons/icon-192.png",
-  "./icons/icon-512.png",
-  "./icons/icon-maskable-512.png"
+  "./icons/icon-512.png"
 ];
 
 self.addEventListener("install", (event) => {
   event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => cache.addAll(CORE_ASSETS)).catch(() => {})
+    caches.open(CACHE_NAME).then((cache) => cache.addAll(CORE_ASSETS))
   );
+
   self.skipWaiting();
 });
 
 self.addEventListener("activate", (event) => {
   event.waitUntil(
     caches.keys().then((keys) =>
-      Promise.all(keys.filter((k) => k !== CACHE_NAME).map((k) => caches.delete(k)))
+      Promise.all(
+        keys
+          .filter((key) => key !== CACHE_NAME)
+          .map((key) => caches.delete(key))
+      )
     )
   );
+
   self.clients.claim();
 });
 
 self.addEventListener("fetch", (event) => {
-  const req = event.request;
-  if (req.method !== "GET") return;
+  const request = event.request;
 
-  // App shell: cache-first, so the app opens instantly and works offline.
+  if (request.method !== "GET") return;
+
   event.respondWith(
-    caches.match(req).then((cached) => {
-      if (cached) return cached;
-      return fetch(req)
-        .then((res) => {
-          // Cache successful same-origin responses for next time.
-          if (res && res.status === 200 && req.url.startsWith(self.location.origin)) {
-            const copy = res.clone();
-            caches.open(CACHE_NAME).then((cache) => cache.put(req, copy));
+    caches.match(request).then((cachedResponse) => {
+      if (cachedResponse) {
+        return cachedResponse;
+      }
+
+      return fetch(request)
+        .then((response) => {
+          if (
+            response &&
+            response.status === 200 &&
+            request.url.startsWith(self.location.origin)
+          ) {
+            const responseCopy = response.clone();
+
+            caches.open(CACHE_NAME).then((cache) => {
+              cache.put(request, responseCopy);
+            });
           }
-          return res;
+
+          return response;
         })
         .catch(() => {
-          // Offline and not cached: fall back to the home page for navigations.
-          if (req.mode === "navigate") return caches.match("./index.html");
-          return new Response("", { status: 408, statusText: "Offline" });
+          if (request.mode === "navigate") {
+            return caches.match("./index.html");
+          }
+
+          return new Response("", {
+            status: 408,
+            statusText: "Offline"
+          });
         });
     })
   );
