@@ -85,7 +85,10 @@
   }
 
   function currentUrlForShare(hash) {
-    const base = location.href.split("#")[0];
+   const base =
+  location.hostname === "127.0.0.1" || location.hostname === "localhost"
+    ? "https://allanmuriuki-lang.github.io/jesus-guidance/"
+    : location.href.split("#")[0];
     return base + "#" + hash;
   }
 
@@ -204,7 +207,29 @@
   }
 
   /* ---------------- Home ---------------- */
+  function shareJGInvitation() {
+  const base =
+  location.hostname === "127.0.0.1" || location.hostname === "localhost"
+    ? "https://allanmuriuki-lang.github.io/jesus-guidance/"
+    : location.href.split("#")[0];
 
+  const text = [
+    "How are you feeling today?",
+    "",
+    "Choose what fits you best:",
+    "😟 Afraid — " + base + "#afraid",
+    "😰 Anxious — " + base + "#anxious",
+    "😔 Discouraged — " + base + "#discouraged",
+    "🕊️ Need Peace — " + base + "#peace",
+    "🧭 Need Guidance — " + base + "#guidance",
+    "💪 Need Strength — " + base + "#strength",
+    "🙏 Prayer — " + base + "#prayer",
+    "",
+    "More choices in JG — Jesus Guidance"
+  ].join("\n");
+
+  openShareSheet("JG — Jesus Guidance", text, "");
+}
   function renderHome() {
     APP.appendChild(topbar({ action: favIconBtn() }));
 
@@ -220,7 +245,14 @@
 
     // Search
     main.appendChild(searchField());
-
+main.appendChild(
+  el("div", { class: "action-row full" }, [
+    el("button", {
+      class: "btn btn-secondary",
+      onclick: shareJGInvitation
+    }, ["📤 Share JG"])
+  ])
+);
     // Quick categories grid
     main.appendChild(el("div", { class: "section-head" }, [
       el("h2", {}, ["Choose how you feel"]),

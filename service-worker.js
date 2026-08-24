@@ -4,7 +4,7 @@
    Provides offline access after the first successful visit.
    ============================================================ */
 
-const CACHE_NAME = "jg-cache-v2";
+const CACHE_NAME = "jg-cache-v3";
 
 const CORE_ASSETS = [
   "./",
